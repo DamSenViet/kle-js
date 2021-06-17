@@ -1,0 +1,29 @@
+{
+  "name": "@damsenviet/kle",
+  "version": "0.0.0",
+  "description": "A JavaScript library for interacting with KLE JSON and KLE data structures.",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "browser": "dist/umd/index.js",
+  "scripts": {
+    "watch:esm": "tsc -w",
+    "build:esm": "tsc",
+    "test": "jest --passWithNoTests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DamSenViet/kle-js.git"
+  },
+  "author": "DamSenViet",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DamSenViet/kle-js/issues"
+  },
+  "homepage": "https://github.com/DamSenViet/kle-js#readme",
+  "devDependencies": {
+    "@types/jest": "^26.0.23",
+    "jest": "^27.0.1",
+    "ts-jest": "^27.0.1",
+    "typescript": "^3.9.2"
+  }
+}

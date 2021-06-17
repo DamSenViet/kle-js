@@ -1,0 +1,31 @@
+{
+  "include": [
+    "./src/**/*.ts",
+  ],
+  "exclude": [
+    "./node_modules",
+    "./tests",
+    "./src/**/*.test.ts",
+  ],
+  "compilerOptions": {
+    "resolveJsonModule": true,
+    "declaration": true,
+    "esModuleInterop": true,
+    // ### PROJECT OPTIONS
+    //  module type to compile into
+    "module": "ES6",
+    // target javascript version
+    "target": "ES6",
+    "outDir": "./dist/esm/",
+    // lib needs to be all ts
+    "allowJs": false,
+    "removeComments": false,
+    // webpack needs this to generate source maps
+    "sourceMap": true,
+    "lib": [
+      "ESNext",
+    ],
+    "moduleResolution": "node",
+    "strict": true,
+  },
+}
