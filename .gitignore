@@ -6,6 +6,9 @@
 **/dist
 **/.env
 
+# Ignore test generated
+/tests/outputs
+
 # Ignore OS Metadata
 **/.DS_Store
 
