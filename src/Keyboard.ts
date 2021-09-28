@@ -2,6 +2,14 @@ import Metadata from './Metadata';
 import Key from './Key';
 import Switch from './Switch';
 import Label from './Label';
+import Ajv from 'ajv';
+
+import backgroundSchema from './kle-json/v1/Background.schema.json';
+import clusterSchema from './kle-json/v1/Cluster.schema.json';
+import keyboardSchema from './kle-json/v1/Keyboard.schema.json';
+import keyLabelsSchema from './kle-json/v1/KeyLabels.schema.json';
+import metadataSchema from './kle-json/v1/Metadata.schema.json';
+import keyChangesSchema from './kle-json/v1/KeyChanges.schema.json';
 
 type KeyLabel = string;
 type KeyChanges = { [key: string]: any };
@@ -422,6 +430,21 @@ class Keyboard {
    * @returns Keyboard instance.
    */
   public static fromJSON(keyboardJSON: KeyboardJSON) {
+    // validate against schema
+    const ajv = new Ajv({ allErrors: true, strictTuples: false });
+    for (const schema of [
+      backgroundSchema,
+      clusterSchema,
+      keyboardSchema,
+      keyChangesSchema,
+      keyLabelsSchema,
+      metadataSchema,
+    ])
+      ajv.addSchema(schema);
+    const validate = ajv.compile(keyboardSchema);
+    const valid = validate(keyboardJSON);
+    if (!valid)
+      throw new Error(ajv.errorsText(validate.errors));
 
     const keyboard = new Keyboard();
 

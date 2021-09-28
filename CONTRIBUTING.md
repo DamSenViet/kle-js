@@ -18,6 +18,16 @@ Use the issues' tab to do the following:
 When you submit code changes, your submissions are understood to be compliant
 with the same license that covers the project.
 
+### Development Installation
+
+After cloning the repository, run the following at the root of the project to
+install the development version:
+
+```bash
+git submodule update --init --recursive
+npm install
+```
+
 ### Available Scripts and Commands
 
 The following scripts are available from the root of the project.
