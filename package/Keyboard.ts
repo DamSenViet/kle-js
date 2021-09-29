@@ -16,6 +16,20 @@ type KeyChanges = { [key: string]: any };
 type MetadataChanges = { [key: string]: any };
 export type KeyboardJSON = Array<MetadataChanges | Array<KeyLabel | KeyChanges>>
 
+const ajv = new Ajv({ allErrors: true, strictTuples: false });
+for (const schema of [
+  backgroundSchema,
+  clusterSchema,
+  keyboardSchema,
+  keyChangesSchema,
+  keyLabelsSchema,
+  metadataSchema,
+])
+  ajv.addSchema(schema);
+/**
+ * Preloaded keyboard schema validation function.
+ */
+const validate = ajv.compile<KeyboardJSON>(keyboardSchema);
 
 /**
  * Iteration helper used with `Array.prototype.map`.
@@ -431,17 +445,6 @@ class Keyboard {
    */
   public static fromJSON(keyboardJSON: KeyboardJSON) {
     // validate against schema
-    const ajv = new Ajv({ allErrors: true, strictTuples: false });
-    for (const schema of [
-      backgroundSchema,
-      clusterSchema,
-      keyboardSchema,
-      keyChangesSchema,
-      keyLabelsSchema,
-      metadataSchema,
-    ])
-      ajv.addSchema(schema);
-    const validate = ajv.compile(keyboardSchema);
     const valid = validate(keyboardJSON);
     if (!valid)
       throw new Error(ajv.errorsText(validate.errors));

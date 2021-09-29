@@ -1,11 +1,11 @@
 {
   "include": [
-    "./src/**/*.ts",
+    "./package/**/*.ts",
   ],
   "exclude": [
     "./node_modules",
     "./tests",
-    "./src/**/*.test.ts",
+    "./package/**/*.test.ts",
   ],
   "compilerOptions": {
     "resolveJsonModule": true,
