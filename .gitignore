@@ -14,3 +14,7 @@
 
 # Ignore Workspace Settings
 **/.vscode
+
+# Gatsby build files
+/.cache/
+/public

@@ -8,7 +8,11 @@
   "scripts": {
     "watch:esm": "tsc -w",
     "build:esm": "tsc",
-    "test": "jest --passWithNoTests"
+    "test:esm": "jest --passWithNoTests",
+    "dev:docs": "gatsby develop",
+    "build:docs": "gatsby build",
+    "clean:docs": "gatsby clean",
+    "test:docs": "gatsby serve"
   },
   "repository": {
     "type": "git",
@@ -21,8 +25,19 @@
   },
   "homepage": "https://github.com/DamSenViet/kle-js#readme",
   "devDependencies": {
+    "@rocketseat/gatsby-theme-docs": "^2.4.0",
     "@types/jest": "^26.0.23",
+    "gatsby": "^3.0.4",
+    "gatsby-plugin-canonical-urls": "^3.0.0",
+    "gatsby-plugin-google-analytics": "^3.0.0",
+    "gatsby-plugin-manifest": "^3.0.0",
+    "gatsby-plugin-offline": "^4.0.0",
+    "gatsby-plugin-remove-trailing-slashes": "^3.0.0",
+    "gatsby-plugin-sitemap": "^3.0.0",
     "jest": "^27.0.1",
+    "prop-types": "^15.7.2",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
     "ts-jest": "^27.0.1",
     "typescript": "^4.4.3"
   },
