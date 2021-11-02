@@ -9,7 +9,7 @@
     "watch:esm": "tsc -w",
     "build:esm": "tsc",
     "test:esm": "jest --passWithNoTests",
-    "dev:docs": "gatsby develop",
+    "dev:docs": "typedoc --out static/api/ package/index.ts --readme none && gatsby develop",
     "build:docs": "gatsby build",
     "clean:docs": "gatsby clean",
     "test:docs": "gatsby serve"
@@ -34,6 +34,8 @@
     "gatsby-plugin-offline": "^4.0.0",
     "gatsby-plugin-remove-trailing-slashes": "^3.0.0",
     "gatsby-plugin-sitemap": "^3.0.0",
+    "gatsby-remark-typedoc-symbol-links": "^2.0.0",
+    "gatsby-source-typedoc": "^1.4.0",
     "jest": "^27.0.1",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",

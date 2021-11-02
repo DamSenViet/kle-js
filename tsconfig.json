@@ -24,6 +24,7 @@
     "sourceMap": true,
     "lib": [
       "ESNext",
+      "DOM",
     ],
     "moduleResolution": "node",
     "strict": true,
