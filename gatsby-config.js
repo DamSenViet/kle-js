@@ -1,11 +1,12 @@
 module.exports = {
+  pathPrefix: 'kle-js',
   siteMetadata: {
-    siteTitle: `Rocket Docs`,
-    defaultTitle: `Rocket Docs`,
-    siteTitleShort: `Rocket Docs`,
-    siteDescription: `Out of the box Gatsby Theme for creating documentation websites easily and quickly`,
-    siteUrl: `https://rocketdocs.netlify.app`,
-    siteAuthor: `@jpedroschmitz`,
+    siteTitle: `kle-js`,
+    defaultTitle: `kle-js`,
+    siteTitleShort: `kle-js`,
+    siteDescription: `A JavaScript library for interacting with KLE JSON and KLE data structures.`,
+    siteUrl: `https://damsenviet.github.io/kle-js/`,
+    siteAuthor: `@DamSenviet`,
     siteImage: `/banner.png`,
     siteLanguage: `en`,
     themeColor: `#8257E6`,
@@ -18,8 +19,8 @@ module.exports = {
       options: {
         configPath: `src/config`,
         docsPath: `src/docs`,
-        repositoryUrl: `https://github.com/jpedroschmitz/rocketdocs`,
-        baseDir: `examples/gatsby-theme-docs`,
+        repositoryUrl: `https://github.com/DamSenViet/kle-js`,
+        baseDir: `.`,
         withMdx: false, // using gatsby-plugin-mdx instead
       },
     },
@@ -58,9 +59,9 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Rocket Docs`,
-        short_name: `Rocket Docs`,
-        start_url: `/`,
+        name: `kle-js`,
+        short_name: `kle-js`,
+        start_url: `kle-js`,
         background_color: `#ffffff`,
         display: `standalone`,
         icon: `static/favicon.png`,

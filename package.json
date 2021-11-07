@@ -9,9 +9,9 @@
     "watch:esm": "tsc -w",
     "build:esm": "tsc",
     "test:esm": "jest --passWithNoTests",
-    "dev:docs": "typedoc --out static/api/ package/index.ts --readme none && gatsby develop",
-    "build:docs": "gatsby build",
-    "clean:docs": "gatsby clean",
+    "dev:docs": "typedoc --readme none --out static/api/ package/index.ts && gatsby develop",
+    "build:docs": "typedoc --readme none --out static/api/ package/index.ts && gatsby build",
+    "clean:docs": "rm -rf static/api/ && gatsby clean",
     "test:docs": "gatsby serve"
   },
   "repository": {

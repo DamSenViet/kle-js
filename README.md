@@ -45,8 +45,25 @@ yarn add @damsenviet/kle
 This quick start demo demonstrates parsing a KLE JSON.
 
 ```js
-import kle from "@damsenviet/kle";
+const fs = require('fs');
+const path = require('path');
+const { Keyboard } = require('@damsenviet/kle');
+
+// relative to this file
+const jsonRelativePath = './keyboard.json';
+const jsonAbsolutePath = path.join(__dirname, jsonRelativePath);
+
+const keyboardJson = JSON.parse(fs.readFileSync(jsonAbsolutePath, 'utf-8'))
+const keyboard = Keyboard.fromJSON(keyboardJson);
+
+for (const key of Keyboard.keys) {
+  for (const label of key.labels) {
+    // pass
+  }
+}
 ```
+
+The schemas for KLE JSON can be found at [kle-json](https://github.com/DamSenViet/kle-json).
 
 ## Contributing
 
