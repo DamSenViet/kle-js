@@ -6,6 +6,9 @@
   "module": "dist/esm/index.js",
   "browser": "dist/umd/index.js",
   "scripts": {
+    "build:umd": "node scripts/build.js",
+    "watch:umd": "node scripts/watch.js",
+    "clean:umd": "rm -rf dist/umd",
     "watch:esm": "tsc -w",
     "build:esm": "tsc",
     "test:esm": "jest --passWithNoTests",
@@ -25,8 +28,14 @@
   },
   "homepage": "https://github.com/DamSenViet/kle-js#readme",
   "devDependencies": {
+    "@babel/core": "^7.16.0",
+    "@babel/plugin-transform-runtime": "^7.16.0",
+    "@babel/preset-env": "^7.16.0",
+    "@babel/runtime": "^7.16.0",
     "@rocketseat/gatsby-theme-docs": "^2.4.0",
     "@types/jest": "^26.0.23",
+    "babel-loader": "^8.2.3",
+    "clear": "^0.1.0",
     "gatsby": "^3.0.4",
     "gatsby-plugin-canonical-urls": "^3.0.0",
     "gatsby-plugin-google-analytics": "^3.0.0",
@@ -40,8 +49,13 @@
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "signale": "^1.4.0",
+    "terser-webpack-plugin": "^5.2.4",
     "ts-jest": "^27.0.1",
-    "typescript": "^4.4.3"
+    "ts-loader": "^9.2.6",
+    "typescript": "^4.4.3",
+    "webpack": "^5.62.1",
+    "webpack-format-messages": "^3.0.1"
   },
   "dependencies": {
     "ajv": "^8.6.2"
