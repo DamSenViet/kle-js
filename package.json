@@ -4,7 +4,6 @@
   "description": "A JavaScript library for interacting with KLE JSON and KLE data structures.",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
-  "browser": "dist/umd/index.js",
   "scripts": {
     "build": "npm run build:umd && npm run build:cjs && npm run build:esm",
     "clean": "npm run clean:umd && npm run clean:cjs && npm run clean:esm && rimraf dist",
