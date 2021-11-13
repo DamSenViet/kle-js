@@ -1,0 +1,21 @@
+name: "deploy-docs"
+on:
+  push:
+    tags:
+      - v*
+jobs:
+  deploy-docs:
+    runs-on: ubuntu-18.04
+    container:
+      image: node:17-buster
+      options: -v /__w/kle-js/kle-js
+      env:
+        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ env.GITHUB_REF }}
+          submodules: 'recursive'
+      - name: deploy-docs
+        run: ./.github/workflows/deploy-docs.sh
