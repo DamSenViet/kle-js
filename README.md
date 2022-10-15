@@ -47,13 +47,13 @@ This quick start demo demonstrates parsing a KLE JSON.
 ```js
 const fs = require('fs');
 const path = require('path');
-const { Keyboard } = require('@damsenviet/kle');
+const { Keyboard, KeyboardJSON } = require('@damsenviet/kle');
 
 // relative to this file
 const jsonRelativePath = './keyboard.json';
 const jsonAbsolutePath = path.join(__dirname, jsonRelativePath);
 
-const keyboardJson = JSON.parse(fs.readFileSync(jsonAbsolutePath, 'utf-8'))
+const keyboardJson = JSON.parse(fs.readFileSync(jsonAbsolutePath, 'utf-8')) as KeyboardJSON;
 const keyboard = Keyboard.fromJSON(keyboardJson);
 
 for (const key of Keyboard.keys) {

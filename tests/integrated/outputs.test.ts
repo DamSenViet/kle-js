@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import Keyboard, { KeyboardJSON } from '../../package/Keyboard';
+import { Keyboard, KeyboardJSON } from '../../package/index';
 
 const inputsPath: string = path.resolve(__dirname, '..', 'inputs');
 const outputsPath: string = path.resolve(__dirname, '..', 'outputs');
