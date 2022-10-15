@@ -11,10 +11,13 @@ import keyLabelsSchema from './kle-json/v1/KeyLabels.schema.json';
 import metadataSchema from './kle-json/v1/Metadata.schema.json';
 import keyChangesSchema from './kle-json/v1/KeyChanges.schema.json';
 
-type KeyLabel = string;
-type KeyChanges = { [key: string]: any };
-type MetadataChanges = { [key: string]: any };
-export type KeyboardJSON = Array<MetadataChanges | Array<KeyLabel | KeyChanges>>
+import {
+  KeyLabelsJSON,
+  KeyChangesJSON,
+  ClusterJSON,
+  MetadataJSON,
+  KeyboardJSON,
+} from "./schema-types";
 
 const ajv = new Ajv({ allErrors: true, strictTuples: false });
 for (const schema of [
@@ -130,38 +133,38 @@ const compareTextSizes = (
  */
 const playbackMetadataChanges = (
   metadata: Metadata,
-  metadataChanges: MetadataChanges,
+  metadataChanges: MetadataJSON,
 ): void => {
   if ('author' in metadataChanges)
-    metadata.author = metadataChanges.author;
+    metadata.author = metadataChanges.author!;
   if ('backcolor' in metadataChanges)
-    metadata.backgroundColor = metadataChanges.backcolor;
+    metadata.backgroundColor = metadataChanges.backcolor!;
   if ('background' in metadataChanges) {
-    if ('name' in metadataChanges.background)
-      metadata.background.name = metadataChanges.background.name;
-    if ('style' in metadataChanges.background)
-      metadata.background.style = metadataChanges.background.style;
+    if ('name' in metadataChanges.background!)
+      metadata.background.name = metadataChanges.background!.name!;
+    if ('style' in metadataChanges.background!)
+      metadata.background.style = metadataChanges.background.style!;
   }
   if ('name' in metadataChanges)
-    metadata.name = metadataChanges.name;
+    metadata.name = metadataChanges.name!;
   if ('notes' in metadataChanges)
-    metadata.notes = metadata.notes;
+    metadata.notes = metadata.notes!;
   if ('radii' in metadataChanges)
-    metadata.radii = metadataChanges.radii;
+    metadata.radii = metadataChanges.radii!;
   if ('switchMount' in metadataChanges)
-    metadata.switch.mount = metadataChanges.switchMount;
+    metadata.switch.mount = metadataChanges.switchMount!;
   if ('switchBrand' in metadataChanges)
-    metadata.switch.brand = metadataChanges.switchBrand;
+    metadata.switch.brand = metadataChanges.switchBrand!;
   if ('switchType' in metadataChanges)
-    metadata.switch.type = metadataChanges.switchType;
+    metadata.switch.type = metadataChanges.switchType!;
   if ('css' in metadataChanges)
-    metadata.css = metadataChanges.css;
+    metadata.css = metadataChanges.css!;
   if ('pcb' in metadataChanges) {
-    metadata.isSwitchesPcbMounted = metadataChanges.pcb;
+    metadata.isSwitchesPcbMounted = metadataChanges.pcb!;
     metadata.includeSwitchesPcbMounted = true;
   }
   if ('plate' in metadataChanges) {
-    metadata.isSwitchesPlateMounted = metadataChanges.plate;
+    metadata.isSwitchesPlateMounted = metadataChanges.plate!;
     metadata.includeSwitchesPlateMounted = true;
   }
 };
@@ -179,7 +182,7 @@ const playbackMetadataChanges = (
  */
 const playbackKeyChanges = (
   key: Key,
-  keyChanges: KeyChanges,
+  keyChanges: KeyChangesJSON,
   currentLabelsColor: Array<string>,
   currentLabelsSize: Array<number>,
   alignment: number,
@@ -193,41 +196,41 @@ const playbackKeyChanges = (
     number,
   ] => {
   if ('r' in keyChanges)
-    key.rotationAngle = keyChanges.r;
+    key.rotationAngle = keyChanges.r!;
   if ('rx' in keyChanges) {
-    key.rotationX = keyChanges.rx;
-    clusterRotationX = keyChanges.rx;
+    key.rotationX = keyChanges.rx!;
+    clusterRotationX = keyChanges.rx!;
     key.x = clusterRotationX;
     key.y = clusterRotationY;
   }
   if ('ry' in keyChanges) {
-    key.rotationY = keyChanges.ry;
-    clusterRotationY = keyChanges.ry;
+    key.rotationY = keyChanges.ry!;
+    clusterRotationY = keyChanges.ry!;
     key.x = clusterRotationX;
     key.y = clusterRotationY;
   }
   if ('a' in keyChanges)
-    alignment = keyChanges.a;
+    alignment = keyChanges.a!;
   if ('f' in keyChanges) {
-    key.defaultTextSize = keyChanges.f;
+    key.defaultTextSize = keyChanges.f!;
     for (let i = 0; i < currentLabelsSize.length; ++i)
       currentLabelsSize[i] = 0;
   }
   if ('f2' in keyChanges)
     for (let i = 1; i < 12; ++i)
-      currentLabelsSize[i] = keyChanges.f2;
+      currentLabelsSize[i] = keyChanges.f2!;
   if ('fa' in keyChanges) {
-    for (let i = 0; i < keyChanges.fa.length; ++i)
-      currentLabelsSize[i] = keyChanges.fa[i];
-    for (let i = keyChanges.fa.length; i < 12; ++i)
+    for (let i = 0; i < keyChanges.fa!.length; ++i)
+      currentLabelsSize[i] = keyChanges.fa![i];
+    for (let i = keyChanges.fa!.length; i < 12; ++i)
       currentLabelsSize[i] = 0;
   }
   if ('p' in keyChanges)
-    key.profileAndRow = keyChanges.p;
+    key.profileAndRow = keyChanges.p!;
   if ('c' in keyChanges)
-    key.color = keyChanges.c;
+    key.color = keyChanges.c!;
   if ('t' in keyChanges) {
-    const labelsColor = keyChanges.t.split('\n');
+    const labelsColor = keyChanges.t!.split('\n');
     if (labelsColor[0] != '')
       key.defaultTextColor = labelsColor[0];
     for (
@@ -238,39 +241,39 @@ const playbackKeyChanges = (
       currentLabelsColor[i] = color;
   }
   if ('x' in keyChanges)
-    key.x += keyChanges.x;
+    key.x += keyChanges.x!;
   if ('y' in keyChanges)
-    key.y += keyChanges.y;
+    key.y += keyChanges.y!;
   if ('w' in keyChanges) {
-    key.width = keyChanges.w;
-    key.width2 = keyChanges.w;
+    key.width = keyChanges.w!;
+    key.width2 = keyChanges.w!;
   }
   if ('h' in keyChanges) {
-    key.height = keyChanges.h;
-    key.height2 = keyChanges.h;
+    key.height = keyChanges.h!;
+    key.height2 = keyChanges.h!;
   }
   if ('x2' in keyChanges)
-    key.x2 = keyChanges.x2;
+    key.x2 = keyChanges.x2!;
   if ('y2' in keyChanges)
-    key.y2 = keyChanges.y2;
+    key.y2 = keyChanges.y2!;
   if ('w2' in keyChanges)
-    key.width2 = keyChanges.w2;
+    key.width2 = keyChanges.w2!;
   if ('h2' in keyChanges)
-    key.height2 = keyChanges.h2;
+    key.height2 = keyChanges.h2!;
   if ('n' in keyChanges)
-    key.isHoming = keyChanges.n;
+    key.isHoming = keyChanges.n!;
   if ('l' in keyChanges)
-    key.isStepped = keyChanges.l;
+    key.isStepped = keyChanges.l!;
   if ('d' in keyChanges)
-    key.isDecal = keyChanges.d;
+    key.isDecal = keyChanges.d!;
   if ('g' in keyChanges)
-    key.isGhosted = keyChanges.g;
+    key.isGhosted = keyChanges.g!;
   if ('sm' in keyChanges)
-    key.switch.mount = keyChanges.sm;
+    key.switch.mount = keyChanges.sm!;
   if ('sb' in keyChanges)
-    key.switch.brand = keyChanges.sb;
+    key.switch.brand = keyChanges.sb!;
   if ('st' in keyChanges)
-    key.switch.type = keyChanges.st;
+    key.switch.type = keyChanges.st!;
   return [
     currentLabelsColor,
     currentLabelsSize,
@@ -548,8 +551,8 @@ class Keyboard {
    * Serializes the Keyboard into a KLE JSON.
    */
   public toJSON(): KeyboardJSON {
-    const keyboardJSON: KeyboardJSON = new Array();
-    let row: Array<KeyLabel | KeyChanges> = new Array();
+    const keyboardJSON: KeyboardJSON = new Array() as KeyboardJSON;
+    let row: Array<KeyLabelsJSON | KeyChangesJSON> = new Array();
     const current: Key = new Key();
     current.switch.mount = this.metadata.switch.mount;
     current.switch.brand = this.metadata.switch.brand;
@@ -561,7 +564,7 @@ class Keyboard {
     let clusterRotationX: number = 0.0;
     let clusterRotationY: number = 0.0;
 
-    const metadataChanges = {};
+    const metadataChanges = {} as MetadataJSON;
     const defualtMetadata = new Metadata();
     recordChange<string>(
       metadataChanges,
@@ -665,7 +668,7 @@ class Keyboard {
     current.y -= 1.0;
 
     for (const key of this.keys.slice().sort(keySortCriteria)) {
-      const keyChanges: KeyChanges = new Object();
+      const keyChanges: KeyChangesJSON = new Object() as KeyChangesJSON;
       const [
         alignment,
         alignedTextLabels,
@@ -684,7 +687,8 @@ class Keyboard {
       );
       const isRowChanged: boolean = key.y != current.y;
       if (row.length > 0 && (isRowChanged || isClusterChanged)) {
-        keyboardJSON.push(row);
+        keyboardJSON.push(row as ClusterJSON);
+        // will eventually take the shape of the cluster json
         row = [];
         isNewRow = true;
       }
@@ -849,7 +853,7 @@ class Keyboard {
       row.push(alignedTextLabels.join('\n').trimEnd())
     }
     if (row.length > 0)
-      keyboardJSON.push(row);
+      keyboardJSON.push(row as ClusterJSON);
     return keyboardJSON;
   }
 
