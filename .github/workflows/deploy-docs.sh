@@ -18,7 +18,7 @@ echo "BUILD: COMPLETE"
 
 # make new repo at build directory
 # have new repo overwrite-gh-pages
-cd public
+cd docs
 
 echo "GIT: CONFIGURING..."
 git init
