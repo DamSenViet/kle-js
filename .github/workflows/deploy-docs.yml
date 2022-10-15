@@ -7,7 +7,7 @@ jobs:
   deploy-docs:
     runs-on: ubuntu-18.04
     container:
-      image: node:17-buster
+      image: node:18-buster
       options: -v /__w/kle-js/kle-js
       env:
         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}

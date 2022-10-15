@@ -1,6 +1,6 @@
 {
   "name": "@damsenviet/kle",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A JavaScript library for interacting with KLE JSON and KLE data structures.",
   "files": [
     "dist/*"
