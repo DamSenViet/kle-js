@@ -56,7 +56,7 @@ const jsonAbsolutePath = path.join(__dirname, jsonRelativePath);
 const keyboardJson = JSON.parse(fs.readFileSync(jsonAbsolutePath, 'utf-8')) as KeyboardJSON;
 const keyboard = Keyboard.fromJSON(keyboardJson);
 
-for (const key of Keyboard.keys) {
+for (const key of keyboard.keys) {
   for (const label of key.labels) {
     // pass
   }
